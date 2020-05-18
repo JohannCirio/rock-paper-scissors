@@ -1,0 +1,99 @@
+<html>
+    <script>
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+        }
+
+        function computerPlay() {
+            
+            let randomNumber = getRndInteger(1,3);
+            switch (randomNumber) {
+                case 1:
+                    return "Rock";
+                case 2:
+                    return "Paper";
+                case 3:
+                    return "Scissors";
+            
+                default:
+                    break;
+            }
+        }
+
+        function rockPaperScissors (playerSelection, computerSelection) {
+
+            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+            computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase();
+
+            if (playerSelection == computerSelection) {
+
+                return `It's a Draw! ${playerSelection} x ${computerSelection}`;
+
+            } else if (playerSelection == "Rock") {
+
+                if (computerSelection == "Scissors") {
+                    return `You win! ${playerSelection} beats ${computerSelection}`;
+                } else {
+                    return `You lose! ${computerSelection} beats ${playerSelection}`;
+                }
+            } else if (playerSelection == "Paper") {
+
+                if (computerSelection == "Rock") {
+                    return `You win! ${playerSelection} beats ${computerSelection}`;
+                } else {
+                    return `You lose! ${computerSelection} beats ${playerSelection}`;
+                }
+            } else if (playerSelection == "Scissors") {
+                
+                if (computerSelection == "Rock") {
+                    return `You win! ${playerSelection} beats ${computerSelection}`;
+                } else {
+                    return `You lose! ${computerSelection} beats ${playerSelection}`;
+                }
+            }
+
+        }
+
+        function game() {
+
+            let wins = 0;
+            let losses = 0;
+            let draws = 0;
+
+            for (let index = 0; index < 5; index++) {
+                
+                let playerChoice = prompt("Rock, paper, scissors?");
+                let result = rockPaperScissors(playerChoice,computerPlay());
+
+                if (result.search("win") != -1) {
+                    wins++;
+                } else if (result.search("lose") != -1) {
+                    losses++;
+                } else {
+                    draws++;
+                }          
+
+                console.log(`${result}. Wins: ${wins} | Loses: ${losses} | Draws: ${draws}`);            
+                
+            }
+            
+            if (wins > losses){
+                console.log("You won! Congratulations!");
+            } else if (losses > wins) {
+                console.log("You lost! Better luck next time");
+            } else {
+                console.log("It's a draw!");
+            }
+        }
+
+        
+
+
+
+
+
+
+
+    </script>
+</html>
