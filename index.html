@@ -1,4 +1,25 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Rock Paper Scissors</h1>
+        <button>Começar Novo Jogo</button>
+        <button id="rock">Pedra</button>
+        <button id="paper">Papel</button>
+        <button id="scissors">Tesoura</button>
+        <!--<div>
+            <img class="logos" src="images/rock.png">
+            <img class="logos" src="images/paper.png">
+            <img class="logos" src="images/scissors.png">
+        </div>
+        -->
+    </body>
+
+
     <script>
 
         function getRndInteger(min, max) {
@@ -86,6 +107,21 @@
                 console.log("It's a draw!");
             }
         }
+
+        function teste () {
+            console.log("teste");
+        }
+        
+        const rockBtn = document.querySelector('#rock');
+        const paperBtn = document.querySelector('#paper');
+        const scissorsBtn = document.querySelector('#scissors');
+
+
+
+        rockBtn.addEventListener('click',teste);
+        paperBtn.addEventListener('click',teste);
+        scissorsBtn.addEventListener('click',teste);
+        
 
     </script>
 </html>
