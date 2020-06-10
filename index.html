@@ -7,10 +7,18 @@
     </head>
     <body>
         <h1>Rock Paper Scissors</h1>
-        <button>Começar Novo Jogo</button>
-        <button id="rock">Pedra</button>
-        <button id="paper">Papel</button>
-        <button id="scissors">Tesoura</button>
+        <button id="new-game">Começar Novo Jogo</button>
+        <div class="score-board" id="notification"></div>
+        <h2>Wins:</h2>
+        <div id="wins" class="score-board"></div>
+        <h2>Losses:</h2>
+        <div id="losses" class="score-board"></div>
+        <h2>Draws:</h2>
+        <div id="draws" class="score-board"></div>
+        <button value="rock" id="rock">Pedra</button>
+        <button value="paper" id="paper">Papel</button>
+        <button value="scissors" id="scissors">Tesoura</button>
+                
         <!--<div>
             <img class="logos" src="images/rock.png">
             <img class="logos" src="images/paper.png">
@@ -76,16 +84,20 @@
 
         }
 
-        function game() {
+        function resetGame() {
 
-            let wins = 0;
-            let losses = 0;
-            let draws = 0;
+            wins = 0;
+            losses = 0;
+            draws = 0;
+
+            winDisplay.textContent = wins;
+            lossDisplay.textContent = losses;
+            drawDisplay.textContent = draws;
 
             for (let index = 0; index < 5; index++) {
                 
-                let playerChoice = prompt("Rock, paper, scissors?");
-                let result = rockPaperScissors(playerChoice,computerPlay());
+                notification.textContent = "Escolha sua jogada!";
+                
 
                 if (result.search("win") != -1) {
                     wins++;
@@ -108,20 +120,33 @@
             }
         }
 
-        function teste () {
-            console.log("teste");
+        function playRound (event) {
+            let resultado = rockPaperScissors(event.target.value,computerPlay());
+            console.log(resultado);
+            console.log(event);
+            notification.textContent = resultado;
+            
         }
         
         const rockBtn = document.querySelector('#rock');
         const paperBtn = document.querySelector('#paper');
         const scissorsBtn = document.querySelector('#scissors');
+        const newGame = document.querySelector("#new-game");
 
+        const winDisplay = document.querySelector("#wins");
+        const lossDisplay = document.querySelector("#losses");
+        const drawDisplay = document.querySelector("#draws");
 
-
-        rockBtn.addEventListener('click',teste);
-        paperBtn.addEventListener('click',teste);
-        scissorsBtn.addEventListener('click',teste);
+        const notification = document.querySelector("#notification");
         
+        let wins = 0;
+        let losses = 0;
+        let draws = 0;
+
+        newGame.addEventListener('click', resetGame)
+        rockBtn.addEventListener('click', playRound);
+        paperBtn.addEventListener('click',playRound);
+        scissorsBtn.addEventListener('click', playRound);        
 
     </script>
 </html>

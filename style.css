@@ -6,9 +6,16 @@ h1{
     text-align: center;
 }
 
+.score-board{
+    height: 50px;
+    border: solid black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+
 .logos{
     width: 25%;
-    height: ;
     border: solid;
     border-radius: 12%;
 }
