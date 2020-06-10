@@ -6,6 +6,10 @@ h1{
     text-align: center;
 }
 
+#final-result{
+   padding: 30px; 
+}
+
 .score-board{
     height: 50px;
     border: solid black;

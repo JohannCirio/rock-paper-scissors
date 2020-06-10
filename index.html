@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Rock Paper Scissors</h1>
+        <h1>Rock Paper Scissors</h1>        
         <button id="new-game">Começar Novo Jogo</button>
+        <div id="final-result"></div>
         <div class="score-board" id="notification"></div>
         <h2>Wins:</h2>
         <div id="wins" class="score-board"></div>
@@ -89,43 +90,60 @@
             wins = 0;
             losses = 0;
             draws = 0;
+            finishedGame = false;
 
             winDisplay.textContent = wins;
             lossDisplay.textContent = losses;
             drawDisplay.textContent = draws;
+            resultDisplay.textContent = "";
+            
+            notification.textContent = "Escolha sua jogada!";
+            
+        }
 
-            for (let index = 0; index < 5; index++) {
-                
-                notification.textContent = "Escolha sua jogada!";
-                
+        
+        function updateScore (result) {
 
-                if (result.search("win") != -1) {
+            if (result.search("win") != -1) {
                     wins++;
                 } else if (result.search("lose") != -1) {
                     losses++;
                 } else {
                     draws++;
-                }          
+                }
 
-                console.log(`${result}. Wins: ${wins} | Loses: ${losses} | Draws: ${draws}`);            
-                
-            }
+            winDisplay.textContent = wins;
+            lossDisplay.textContent = losses;
+            drawDisplay.textContent = draws;            
+        }
+
+        function winCheck () {
             
-            if (wins > losses){
-                console.log("You won! Congratulations!");
-            } else if (losses > wins) {
-                console.log("You lost! Better luck next time");
-            } else {
-                console.log("It's a draw!");
+            if (wins == 5){
+                resultDisplay.textContent = "You won!!! Congratulations!!";
+                return true;
             }
+            if (losses == 5){
+                resultDisplay.textContent = "You lost :(  Better luck next time";
+                return true;
+            }
+
+            return false;
         }
 
         function playRound (event) {
+            
+            if (finishedGame == true){
+                return;
+            }
+
             let resultado = rockPaperScissors(event.target.value,computerPlay());
             console.log(resultado);
-            console.log(event);
             notification.textContent = resultado;
-            
+
+            updateScore(resultado);
+            finishedGame = winCheck();      
+
         }
         
         const rockBtn = document.querySelector('#rock');
@@ -136,6 +154,9 @@
         const winDisplay = document.querySelector("#wins");
         const lossDisplay = document.querySelector("#losses");
         const drawDisplay = document.querySelector("#draws");
+        const resultDisplay = document.querySelector("#final-result");
+
+        let finishedGame = false;
 
         const notification = document.querySelector("#notification");
         
@@ -146,7 +167,9 @@
         newGame.addEventListener('click', resetGame)
         rockBtn.addEventListener('click', playRound);
         paperBtn.addEventListener('click',playRound);
-        scissorsBtn.addEventListener('click', playRound);        
+        scissorsBtn.addEventListener('click', playRound); 
+
+        resetGame();       
 
     </script>
 </html>
